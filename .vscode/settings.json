@@ -1,0 +1,6 @@
+{
+  "git.ignoredRepositories": [
+    "/Users/divyeshgami/Documents/softwares/flutter"
+  ],
+  "git.autoRepositoryDetection": "subFolders"
+}
