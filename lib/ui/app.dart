@@ -1,3 +1,4 @@
+import 'package:divyesh_gami/pages/home_screen.dart';
 import 'package:divyesh_gami/ui/blast_animation.dart';
 import 'package:divyesh_gami/ui/logo_animation.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _AppState extends State<App> with TickerProviderStateMixin {
 
     blastAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 3),
     );
 
     logoAnimationTween.animate(
@@ -35,6 +36,24 @@ class _AppState extends State<App> with TickerProviderStateMixin {
     logoAnimationTweenController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         blastAnimationController.forward(from: 0);
+      }
+    });
+
+    blastAnimationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            transitionDuration: const Duration(seconds: 2),
+          ),
+        );
       }
     });
 
