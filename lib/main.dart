@@ -1,3 +1,4 @@
+import 'package:divyesh_gami/pages/home_screen.dart';
 import 'package:divyesh_gami/ui/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,7 +43,7 @@ class FintechRewardApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const App(),
+      home: const HomeScreen(),
     );
   }
 }

@@ -7,7 +7,7 @@ class AppText {
   static const String zeroFailures = "Zero failures";
   static const String zeroPaymentFailuresEnsureYouNeverMissAnOrder =
       "Zero payment failures ensure you never miss an order";
-  static const String instantRefunds = "Instant refunds";
+  static const String instantRefunds = "Real-time refunds";
   static const String getRefundsInstantlyIntoYourWalletForCancelledOrders =
-      "Get refunds instantly into your wallet for cancelled orders";
+      "No need to wait for refunds. blinkit Money refunds are instant!";
 }

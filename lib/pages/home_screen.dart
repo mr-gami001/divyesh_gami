@@ -1,5 +1,6 @@
 import 'package:divyesh_gami/ui/logo_animation.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../constants/app_text.dart';
 
@@ -143,216 +144,235 @@ class _HomeScreenState extends State<HomeScreen>
           alignment: Alignment.center,
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              // Spacing to position the logo upside (upper part of screen)
-              SizedBox(height: screenHeight * 0.08),
-
-              // Hero Wallet Logo - flies smoothly upside from logo_animation.dart
-              Hero(
-                tag: "logo",
-                transitionOnUserGestures: true,
-                createRectTween: (begin, end) =>
-                    CurveRectTween(begin: begin, end: end),
-                child: const Icon(
-                  Icons.account_balance_wallet_rounded,
-                  size: 100,
-                  color: Colors.white,
+              SizedBox(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Lottie.asset(
+                  'assets/animation/celebration.json',
+                  repeat: false,
+                  fit: BoxFit.fill,
+                  filterQuality: FilterQuality.high,
                 ),
               ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Spacing to position the logo upside (upper part of screen)
+                  SizedBox(height: screenHeight * 0.08),
 
-              // Staggered contents below the logo (no setState rebuilds)
-              FadeTransition(
-                opacity: _blinkitFadeAnimation,
-                child: SlideTransition(
-                  position: _blinkitSlideAnimation,
-                  child: const Text(
-                    AppText.blinkit,
-                    style: TextStyle(
+                  // Hero Wallet Logo - flies smoothly upside from logo_animation.dart
+                  Hero(
+                    tag: "logo",
+                    transitionOnUserGestures: true,
+                    createRectTween: (begin, end) =>
+                        CurveRectTween(begin: begin, end: end),
+                    child: const Icon(
+                      Icons.account_balance_wallet_rounded,
+                      size: 100,
                       color: Colors.white,
-                      fontSize: 26,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 0.5,
                     ),
                   ),
-                ),
-              ),
 
-              // "MONEY" typography title
-              FadeTransition(
-                opacity: _moneyFadeAnimation,
-                child: SlideTransition(
-                  position: _moneySlideAnimation,
-                  child: const Text(
-                    AppText.MONEY,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 48,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 6.0,
-                      height: 1.0,
+                  // Staggered contents below the logo (no setState rebuilds)
+                  FadeTransition(
+                    opacity: _blinkitFadeAnimation,
+                    child: SlideTransition(
+                      position: _blinkitSlideAnimation,
+                      child: const Text(
+                        AppText.blinkit,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
 
-              // // Feature Cards wrapper
-              AnimatedBuilder(
-                animation: _animationController,
-                builder: (context, child) {
-                  if (_animationController.value < 0.5) {
-                    return const SizedBox.shrink();
-                  }
-                  return SizeTransition(
-                    sizeFactor: CurvedAnimation(
-                      parent: _animationController,
-                      curve: const Interval(0.5, 0.75, curve: Curves.easeInOut),
-                    ),
-                    axisAlignment: -1.0,
-                    child: child!,
-                  );
-                },
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // // Feature Card 1: Single tap payments
-                    FadeTransition(
-                      opacity: _card1FadeAnimation,
-                      child: SlideTransition(
-                        position: _card1SlideAnimation,
-                        child: _buildFeatureCard(
-                          topMargin: 40,
-                          title: AppText.singleTapPayments,
-                          subtitle: AppText
-                              .enjoySeamlessPaymentsWithoutTheWaitForOTPs,
-                          iconStack: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const Positioned(
-                                top: 4,
-                                child: Icon(
-                                  Icons.phone_iphone_rounded,
-                                  color: Color(
-                                    0xFFF4D03F,
-                                  ), // Gold Phone outline
-                                  size: 26,
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 4,
-                                right: 4,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.black,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  padding: const EdgeInsets.all(1),
-                                  child: const Icon(
-                                    Icons.touch_app_rounded,
-                                    color: Colors.white,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                  // "MONEY" typography title
+                  FadeTransition(
+                    opacity: _moneyFadeAnimation,
+                    child: SlideTransition(
+                      position: _moneySlideAnimation,
+                      child: const Text(
+                        AppText.MONEY,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 48,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 6.0,
+                          height: 1.0,
                         ),
                       ),
                     ),
+                  ),
 
-                    // // Feature Card 2: Zero failures
-                    FadeTransition(
-                      opacity: _card2FadeAnimation,
-                      child: SlideTransition(
-                        position: _card2SlideAnimation,
-                        child: _buildFeatureCard(
-                          topMargin: 16,
-                          title: AppText.zeroFailures,
-                          subtitle: AppText
-                              .zeroPaymentFailuresEnsureYouNeverMissAnOrder,
-                          iconStack: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const Positioned(
-                                top: 4,
-                                child: Icon(
-                                  Icons.phone_iphone_rounded,
-                                  color: Color(
-                                    0xFFF4D03F,
-                                  ), // Gold Phone outline
-                                  size: 26,
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 4,
-                                right: 4,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.black,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  padding: const EdgeInsets.all(1),
-                                  child: const Icon(
-                                    Icons.wifi_rounded,
-                                    color: Colors.white,
-                                    size: 16,
-                                  ),
-                                ),
-                              ),
-                            ],
+                  // // Feature Cards wrapper
+                  AnimatedBuilder(
+                    animation: _animationController,
+                    builder: (context, child) {
+                      if (_animationController.value < 0.5) {
+                        return const SizedBox.shrink();
+                      }
+                      return SizeTransition(
+                        sizeFactor: CurvedAnimation(
+                          parent: _animationController,
+                          curve: const Interval(
+                            0.5,
+                            0.75,
+                            curve: Curves.easeInOut,
                           ),
                         ),
-                      ),
-                    ),
-
-                    // // Feature Card 3: Instant refunds
-                    FadeTransition(
-                      opacity: _card3FadeAnimation,
-                      child: SlideTransition(
-                        position: _card3SlideAnimation,
-                        child: _buildFeatureCard(
-                          topMargin: 16,
-                          title: AppText.instantRefunds,
-                          subtitle: AppText
-                              .getRefundsInstantlyIntoYourWalletForCancelledOrders,
-                          iconStack: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const Positioned(
-                                top: 4,
-                                child: Icon(
-                                  Icons.phone_iphone_rounded,
-                                  color: Color(
-                                    0xFFF4D03F,
-                                  ), // Gold Phone outline
-                                  size: 26,
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 4,
-                                right: 4,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.black,
-                                    shape: BoxShape.circle,
+                        axisAlignment: -1.0,
+                        child: child!,
+                      );
+                    },
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // // Feature Card 1: Single tap payments
+                        FadeTransition(
+                          opacity: _card1FadeAnimation,
+                          child: SlideTransition(
+                            position: _card1SlideAnimation,
+                            child: _buildFeatureCard(
+                              topMargin: 40,
+                              title: AppText.singleTapPayments,
+                              subtitle: AppText
+                                  .enjoySeamlessPaymentsWithoutTheWaitForOTPs,
+                              iconStack: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  const Positioned(
+                                    top: 4,
+                                    child: Icon(
+                                      Icons.phone_iphone_rounded,
+                                      color: Color(
+                                        0xFFF4D03F,
+                                      ), // Gold Phone outline
+                                      size: 26,
+                                    ),
                                   ),
-                                  padding: const EdgeInsets.all(1),
-                                  child: const Icon(
-                                    Icons.bolt_rounded,
-                                    color: Colors.white,
-                                    size: 16,
+                                  Positioned(
+                                    bottom: 4,
+                                    right: 4,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.black,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      padding: const EdgeInsets.all(1),
+                                      child: const Icon(
+                                        Icons.touch_app_rounded,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
+
+                        // // Feature Card 2: Zero failures
+                        FadeTransition(
+                          opacity: _card2FadeAnimation,
+                          child: SlideTransition(
+                            position: _card2SlideAnimation,
+                            child: _buildFeatureCard(
+                              topMargin: 16,
+                              title: AppText.zeroFailures,
+                              subtitle: AppText
+                                  .zeroPaymentFailuresEnsureYouNeverMissAnOrder,
+                              iconStack: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  const Positioned(
+                                    top: 4,
+                                    child: Icon(
+                                      Icons.phone_iphone_rounded,
+                                      color: Color(
+                                        0xFFF4D03F,
+                                      ), // Gold Phone outline
+                                      size: 26,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 4,
+                                    right: 4,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.black,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      padding: const EdgeInsets.all(1),
+                                      child: const Icon(
+                                        Icons.wifi_rounded,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        // // Feature Card 3: Instant refunds
+                        FadeTransition(
+                          opacity: _card3FadeAnimation,
+                          child: SlideTransition(
+                            position: _card3SlideAnimation,
+                            child: _buildFeatureCard(
+                              topMargin: 16,
+                              title: AppText.instantRefunds,
+                              subtitle: AppText
+                                  .getRefundsInstantlyIntoYourWalletForCancelledOrders,
+                              iconStack: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  const Positioned(
+                                    top: 4,
+                                    child: Icon(
+                                      Icons.phone_iphone_rounded,
+                                      color: Color(
+                                        0xFFF4D03F,
+                                      ), // Gold Phone outline
+                                      size: 26,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 4,
+                                    right: 4,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.black,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      padding: const EdgeInsets.all(1),
+                                      child: const Icon(
+                                        Icons.bolt_rounded,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
