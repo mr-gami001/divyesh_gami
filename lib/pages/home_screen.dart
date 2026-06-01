@@ -1,5 +1,6 @@
 import 'package:divyesh_gami/constants/app_assets.dart';
 import 'package:divyesh_gami/constants/app_text_style.dart';
+import 'package:divyesh_gami/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -122,7 +123,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         backgroundColor: Colors.transparent,
+        appBar: CustomAppBar(
+          onBackTap: () {
+            // Navigator.of(context).pop();
+          },
+          onSettingsTap: () {
+            // Settings button action
+          },
+          animationController: _animationController,
+        ),
         body: Container(
           alignment: Alignment.center,
           width: double.infinity,
