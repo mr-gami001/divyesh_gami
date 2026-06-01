@@ -10,4 +10,10 @@ class AppText {
   static const String instantRefunds = "Real-time refunds";
   static const String getRefundsInstantlyIntoYourWalletForCancelledOrders =
       "No need to wait for refunds. blinkit Money refunds are instant!";
+  static const String enjoySeamless = "Enjoy seamless";
+  static const String oneTapPayments = "One tap payments";
+  static const String addMoney = "Add Money";
+  static const String claimGiftCard = "Claim Gift Card";
+  static const String enterGiftCardDetailsToClaimYourGiftCard =
+      "Enter gift card details to claim your gift card";
 }

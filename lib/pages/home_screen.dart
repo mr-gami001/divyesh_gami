@@ -125,25 +125,155 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         body: Container(
           alignment: Alignment.center,
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Stack(
             alignment: Alignment.center,
             children: [
               _buildCelebrationAnimation(context),
               Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _fallingLogo(),
-                    _blinkitMoneyText(),
-                    _featuresCards(),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _fallingLogo(),
+                      _blinkitMoneyText(),
+                      _featuresCards(),
+                      _bottomButtons(),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _bottomButtons() {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (context, child) {
+        if (_animationController.isCompleted) {
+          return child!;
+        }
+        return SizedBox.shrink();
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 16),
+          InkWell(
+            onTap: () {
+              // Add money action
+            },
+            child: Container(
+              height: 54,
+              decoration: BoxDecoration(
+                color: const Color(0xFF3B8C1D),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              width: double.infinity,
+              alignment: Alignment.center,
+              child: const Text(
+                AppText.addMoney,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+          // Claim Gift Card Card
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1B1B1E),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.white.withAlpha(12), width: 1),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: Colors.orange.withAlpha(30),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Image.asset(
+                    AppAssets.giftCard,
+                    height: 26,
+                    width: 26,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        AppText.claimGiftCard,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        AppText.enterGiftCardDetailsToClaimYourGiftCard,
+                        style: TextStyle(
+                          color: Colors.grey.shade400,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Icon(
+                  Icons.chevron_right_rounded,
+                  color: Colors.grey,
+                  size: 24,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 40),
+          // Watermark bottom text
+          Opacity(
+            opacity: 0.15,
+            child: Column(
+              children: const [
+                Text(
+                  AppText.enjoySeamless,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  AppText.oneTapPayments,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 32),
+        ],
       ),
     );
   }
