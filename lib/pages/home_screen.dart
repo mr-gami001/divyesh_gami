@@ -180,13 +180,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           InkWell(
             onTap: () {
-              // Add money action
             },
             child: Container(
               height: MediaQuery.of(context).size.height * 0.052,
               decoration: BoxDecoration(
                 color: AppColors.successGreen,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(10),
               ),
               width: double.infinity,
               alignment: Alignment.center,
