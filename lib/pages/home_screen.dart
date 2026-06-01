@@ -1,4 +1,5 @@
 import 'package:divyesh_gami/constants/app_assets.dart';
+import 'package:divyesh_gami/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -178,12 +179,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               alignment: Alignment.center,
               child: const Text(
                 AppText.addMoney,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.5,
-                ),
+                style: AppTextStyle.buttonTextStyle,
               ),
             ),
           ),
@@ -219,19 +215,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     children: [
                       const Text(
                         AppText.claimGiftCard,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppTextStyle.bold16White,
                       ),
                       const SizedBox(height: 4),
                       Text(
                         AppText.enterGiftCardDetailsToClaimYourGiftCard,
-                        style: TextStyle(
-                          color: Colors.grey.shade400,
-                          fontSize: 13,
-                        ),
+                        style: AppTextStyle.claimGiftCardSubtitle,
                       ),
                     ],
                   ),
@@ -252,22 +241,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               children: const [
                 Text(
                   AppText.enjoySeamless,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 0.5,
-                  ),
+                  style: AppTextStyle.watermarkTextStyle,
                 ),
                 SizedBox(height: 4),
                 Text(
                   AppText.oneTapPayments,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 0.5,
-                  ),
+                  style: AppTextStyle.watermarkTextStyle,
                 ),
               ],
             ),
@@ -350,12 +329,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 position: _blinkitSlideAnimation,
                 child: const Text(
                   AppText.blinkit,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 0.5,
-                  ),
+                  style: AppTextStyle.blinkitTitleStyle,
                 ),
               ),
             ),
@@ -367,13 +341,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   margin: const EdgeInsets.only(bottom: 40),
                   child: const Text(
                     AppText.MONEY,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 48,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 6.0,
-                      height: 1.0,
-                    ),
+                    style: AppTextStyle.moneyTitleStyle,
                   ),
                 ),
               ),
@@ -500,20 +468,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyle.bold16White,
                 ),
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 13,
-                    height: 1.3,
-                  ),
+                  style: AppTextStyle.featureSubtitleStyle,
                 ),
               ],
             ),
