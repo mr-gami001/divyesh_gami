@@ -179,8 +179,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           InkWell(
-            onTap: () {
-            },
+            onTap: () {},
             child: Container(
               height: MediaQuery.of(context).size.height * 0.052,
               decoration: BoxDecoration(
@@ -304,10 +303,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       builder: (context, value, child) {
         return Transform.translate(offset: Offset(0, value), child: child);
       },
-      child: Icon(
-        Icons.account_balance_wallet_rounded,
-        size: MediaQuery.of(context).size.height * 0.09,
-        color: AppColors.white,
+      child: Image.asset(
+        AppAssets.logo,
+        height: MediaQuery.of(context).size.height * 0.13,
+        width: MediaQuery.of(context).size.height * 0.13,
       ),
     );
   }
@@ -480,15 +479,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: AppTextStyle.bold16White,
-                ),
+                Text(title, style: AppTextStyle.bold16White),
                 const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: AppTextStyle.featureSubtitleStyle,
-                ),
+                Text(subtitle, style: AppTextStyle.featureSubtitleStyle),
               ],
             ),
           ),
