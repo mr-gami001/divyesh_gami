@@ -1,3 +1,4 @@
+import 'package:divyesh_gami/constants/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -136,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   children: [
                     _fallingLogo(),
                     _blinkitMoneyText(),
-                    _featureCards(),
+                    _featuresCards(),
                   ],
                 ),
               ),
@@ -154,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         height: MediaQuery.of(context).size.height * 0.5,
         width: MediaQuery.of(context).size.width,
         child: Lottie.asset(
-          'assets/animation/celebration.json',
+          AppAssets.celebrationLottieJson,
           repeat: false,
           fit: BoxFit.fill,
           filterQuality: FilterQuality.high,
@@ -253,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-  Widget _featureCards() {
+  Widget _featuresCards() {
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
@@ -263,11 +264,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         return SizeTransition(
           sizeFactor: CurvedAnimation(
             parent: _animationController,
-            curve: const Interval(
-              0.60,
-              0.70,
-              curve: Curves.easeInOut,
-            ),
+            curve: const Interval(0.60, 0.70, curve: Curves.easeInOut),
           ),
           axisAlignment: -1.0,
           child: child!,
@@ -285,34 +282,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 topMargin: 0,
                 title: AppText.singleTapPayments,
                 subtitle: AppText.enjoySeamlessPaymentsWithoutTheWaitForOTPs,
-                iconStack: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    const Positioned(
-                      top: 4,
-                      child: Icon(
-                        Icons.phone_iphone_rounded,
-                        color: Color(0xFFF4D03F), // Gold Phone outline
-                        size: 26,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 4,
-                      right: 4,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.black,
-                          shape: BoxShape.circle,
-                        ),
-                        padding: const EdgeInsets.all(1),
-                        child: const Icon(
-                          Icons.touch_app_rounded,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  ],
+                icon: Image.asset(
+                  AppAssets.singleTapPayments,
+                  height: 26,
+                  width: 26,
                 ),
               ),
             ),
@@ -327,34 +300,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 topMargin: 16,
                 title: AppText.zeroFailures,
                 subtitle: AppText.zeroPaymentFailuresEnsureYouNeverMissAnOrder,
-                iconStack: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    const Positioned(
-                      top: 4,
-                      child: Icon(
-                        Icons.phone_iphone_rounded,
-                        color: Color(0xFFF4D03F), // Gold Phone outline
-                        size: 26,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 4,
-                      right: 4,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.black,
-                          shape: BoxShape.circle,
-                        ),
-                        padding: const EdgeInsets.all(1),
-                        child: const Icon(
-                          Icons.wifi_rounded,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                      ),
-                    ),
-                  ],
+                icon: Image.asset(
+                  AppAssets.zeroFailures,
+                  height: 26,
+                  width: 26,
                 ),
               ),
             ),
@@ -368,35 +317,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               child: _buildFeatureCard(
                 topMargin: 16,
                 title: AppText.instantRefunds,
-                subtitle: AppText.getRefundsInstantlyIntoYourWalletForCancelledOrders,
-                iconStack: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    const Positioned(
-                      top: 4,
-                      child: Icon(
-                        Icons.phone_iphone_rounded,
-                        color: Color(0xFFF4D03F), // Gold Phone outline
-                        size: 26,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 4,
-                      right: 4,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.black,
-                          shape: BoxShape.circle,
-                        ),
-                        padding: const EdgeInsets.all(1),
-                        child: const Icon(
-                          Icons.bolt_rounded,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                      ),
-                    ),
-                  ],
+                subtitle:
+                    AppText.getRefundsInstantlyIntoYourWalletForCancelledOrders,
+                icon: Image.asset(
+                  AppAssets.realTimeRefunds,
+                  height: 26,
+                  width: 26,
                 ),
               ),
             ),
@@ -409,7 +335,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget _buildFeatureCard({
     required String title,
     required String subtitle,
-    required Widget iconStack,
+    required Widget icon,
     required double topMargin,
   }) {
     return Container(
@@ -427,13 +353,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           // Black rounded icon container
           Container(
             width: 52,
-            height: 52,
+            height: 65,
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: Colors.white.withAlpha(15), width: 1),
             ),
-            child: iconStack,
+            child: icon,
           ),
           const SizedBox(width: 16),
 
