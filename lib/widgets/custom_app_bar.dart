@@ -1,3 +1,4 @@
+import 'package:divyesh_gami/constants/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -74,15 +75,15 @@ class _AppBarButton extends StatelessWidget {
         height: 48,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.white.withOpacity(0.08),
+          color: AppColors.glassButtonBg,
           border: Border.all(
-            color: Colors.white.withOpacity(0.12),
+            color: AppColors.glassButtonBorder,
             width: 1,
           ),
         ),
         child: Icon(
           icon,
-          color: Colors.white,
+          color: AppColors.white,
           size: 24,
         ),
       ),

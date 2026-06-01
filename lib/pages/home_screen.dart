@@ -1,4 +1,5 @@
 import 'package:divyesh_gami/constants/app_assets.dart';
+import 'package:divyesh_gami/constants/app_colors.dart';
 import 'package:divyesh_gami/constants/app_text_style.dart';
 import 'package:divyesh_gami/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -121,28 +122,29 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        backgroundColor: Colors.transparent,
-        appBar: CustomAppBar(
-          onBackTap: () {
-            // Navigator.of(context).pop();
-          },
-          onSettingsTap: () {
-            // Settings button action
-          },
-          animationController: _animationController,
-        ),
-        body: Container(
-          alignment: Alignment.center,
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              _buildCelebrationAnimation(context),
-              Center(
+    return Container(
+      color: AppColors.background,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          _buildCelebrationAnimation(context),
+          Scaffold(
+            extendBodyBehindAppBar: false,
+            backgroundColor: AppColors.transparent,
+            appBar: CustomAppBar(
+              onBackTap: () {
+                // Navigator.of(context).pop();
+              },
+              onSettingsTap: () {
+                // Settings button action
+              },
+              animationController: _animationController,
+            ),
+            body: Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Center(
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -156,9 +158,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -175,15 +177,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 16),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.01),
           InkWell(
             onTap: () {
               // Add money action
             },
             child: Container(
-              height: 54,
+              height: MediaQuery.of(context).size.height * 0.052,
               decoration: BoxDecoration(
-                color: const Color(0xFF3B8C1D),
+                color: AppColors.successGreen,
                 borderRadius: BorderRadius.circular(16),
               ),
               width: double.infinity,
@@ -194,32 +196,35 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.008),
           // Claim Gift Card Card
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.04,
+              vertical: MediaQuery.of(context).size.height * 0.01,
+            ),
             decoration: BoxDecoration(
-              color: const Color(0xFF1B1B1E),
+              color: AppColors.cardBg,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.white.withAlpha(12), width: 1),
+              border: Border.all(color: AppColors.cardBorder, width: 1),
             ),
             child: Row(
               children: [
                 Container(
-                  width: 44,
-                  height: 44,
+                  width: MediaQuery.of(context).size.height * 0.045,
+                  height: MediaQuery.of(context).size.height * 0.045,
                   decoration: BoxDecoration(
-                    color: Colors.orange.withAlpha(30),
+                    color: AppColors.orangeHighlight,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Image.asset(
                     AppAssets.giftCard,
-                    height: 26,
-                    width: 26,
+                    height: MediaQuery.of(context).size.height * 0.024,
+                    width: MediaQuery.of(context).size.height * 0.024,
                   ),
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.04),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -238,31 +243,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
                 const Icon(
                   Icons.chevron_right_rounded,
-                  color: Colors.grey,
+                  color: AppColors.grey,
                   size: 24,
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           // Watermark bottom text
-          Opacity(
-            opacity: 0.15,
-            child: Column(
-              children: const [
-                Text(
-                  AppText.enjoySeamless,
-                  style: AppTextStyle.watermarkTextStyle,
-                ),
-                SizedBox(height: 4),
-                Text(
-                  AppText.oneTapPayments,
-                  style: AppTextStyle.watermarkTextStyle,
-                ),
-              ],
-            ),
+          Column(
+            children: [
+              Text(
+                AppText.enjoySeamless,
+                style: AppTextStyle.watermarkTextStyle,
+              ),
+              SizedBox(height: 4),
+              Text(
+                AppText.oneTapPayments,
+                style: AppTextStyle.watermarkTextStyle,
+              ),
+            ],
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
         ],
       ),
     );
@@ -303,10 +305,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       builder: (context, value, child) {
         return Transform.translate(offset: Offset(0, value), child: child);
       },
-      child: const Icon(
+      child: Icon(
         Icons.account_balance_wallet_rounded,
-        size: 100,
-        color: Colors.white,
+        size: MediaQuery.of(context).size.height * 0.09,
+        color: AppColors.white,
       ),
     );
   }
@@ -349,7 +351,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               child: SlideTransition(
                 position: _moneySlideAnimation,
                 child: Container(
-                  margin: const EdgeInsets.only(bottom: 40),
+                  margin: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).size.height * 0.025,
+                  ),
                   child: const Text(
                     AppText.MONEY,
                     style: AppTextStyle.moneyTitleStyle,
@@ -393,8 +397,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 subtitle: AppText.enjoySeamlessPaymentsWithoutTheWaitForOTPs,
                 icon: Image.asset(
                   AppAssets.singleTapPayments,
-                  height: 26,
-                  width: 26,
+                  height: MediaQuery.of(context).size.height * 0.024,
+                  width: MediaQuery.of(context).size.height * 0.024,
                 ),
               ),
             ),
@@ -406,13 +410,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             child: SlideTransition(
               position: _card2SlideAnimation,
               child: _buildFeatureCard(
-                topMargin: 16,
+                topMargin: MediaQuery.of(context).size.height * 0.012,
                 title: AppText.zeroFailures,
                 subtitle: AppText.zeroPaymentFailuresEnsureYouNeverMissAnOrder,
                 icon: Image.asset(
                   AppAssets.zeroFailures,
-                  height: 26,
-                  width: 26,
+                  height: MediaQuery.of(context).size.height * 0.024,
+                  width: MediaQuery.of(context).size.height * 0.024,
                 ),
               ),
             ),
@@ -424,14 +428,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             child: SlideTransition(
               position: _card3SlideAnimation,
               child: _buildFeatureCard(
-                topMargin: 16,
+                topMargin: MediaQuery.of(context).size.height * 0.012,
                 title: AppText.instantRefunds,
                 subtitle:
                     AppText.getRefundsInstantlyIntoYourWalletForCancelledOrders,
                 icon: Image.asset(
                   AppAssets.realTimeRefunds,
-                  height: 26,
-                  width: 26,
+                  height: MediaQuery.of(context).size.height * 0.024,
+                  width: MediaQuery.of(context).size.height * 0.024,
                 ),
               ),
             ),
@@ -450,27 +454,27 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(top: topMargin),
-      padding: const EdgeInsets.all(18),
+      padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.016),
       decoration: BoxDecoration(
-        color: const Color(0xFF1B1B1E),
+        color: AppColors.cardBg,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withAlpha(12), width: 1),
+        border: Border.all(color: AppColors.cardBorder, width: 1),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Black rounded icon container
           Container(
-            width: 52,
-            height: 65,
+            width: MediaQuery.of(context).size.height * 0.05,
+            height: MediaQuery.of(context).size.height * 0.065,
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: AppColors.background,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.white.withAlpha(15), width: 1),
+              border: Border.all(color: AppColors.highlightBorder, width: 1),
             ),
             child: icon,
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.04),
 
           // Title & Description
           Expanded(
